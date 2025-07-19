@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Slf4j
 @Controller
@@ -30,5 +31,12 @@ public class Register {
         model.addAttribute("articles", allInput);
         return "show";
 
+    }
+
+    @PostMapping("/register/delete/{userId}")
+    public String deleteUser(@PathVariable Long userId) {
+        inputRepository.deleteById(userId);
+        log.info("Deleted user id={}", userId);
+        return "redirect:/register/all";
     }
 }

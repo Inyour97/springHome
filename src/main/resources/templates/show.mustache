@@ -4,6 +4,7 @@
         <th scope="col">아이디</th>
         <th scope="col">타이틀</th>
         <th scope="col">컨텐츠</th>
+        <th scope="col">삭제</th>
     </tr>
     </thead>
     <tbody>
@@ -12,6 +13,16 @@
             <th>{{id}}</th>
             <td>{{title}}</td>
             <td>{{content}}</td>
+            <td>
+                <form action="/register/delete/{{id}}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger btn-sm">삭제</button>
+                </form>
+            </td>
+        </tr>
+    {{/articles}}
+    {{^articles}}
+        <tr>
+            <td colspan="4">등록된 데이터가 없습니다.</td>
         </tr>
     {{/articles}}
     </tbody>
