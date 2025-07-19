@@ -1,8 +1,14 @@
 package com.example.account.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
+@AllArgsConstructor
+@ToString
+@NoArgsConstructor
 public class InputDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,13 +18,4 @@ public class InputDetail {
     @Column
     private String content;
 
-    public InputDetail(){
-
-    }
-
-    public InputDetail(Long id,String title,String content){
-        this.id=id;
-        this.title=title;
-        this.content=content;
-    }
 }
