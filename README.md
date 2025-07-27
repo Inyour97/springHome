@@ -22,7 +22,6 @@
 - **주요 기능**:
   - CRUD 기능 (입력/수정/삭제)
   - 정기 수입·지출 자동 반영
-  - JWT 기반 로그인 및 인증 처리
   - Excel 다운로드 (Apache POI)
   - 차트 기반 통계 시각화
 
@@ -34,7 +33,6 @@
 com.accountbook
  ├── controller    // API 요청 처리
  ├── service       // 비즈니스 로직
- ├── repository    // JPA 기반 DB 접근
  ├── entity        // 테이블 매핑 객체
  ├── dto           // 데이터 전달 객체
  └── config        // 시큐리티 및 설정
