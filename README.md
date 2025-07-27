@@ -12,8 +12,6 @@
 | Language   | Java 11, JavaScript, HTML                     |
 | Framework  | Spring Boot, Spring Security (JWT)           |
 | DB         | SQL Server                                    |
-| View       | JSP, Chart.js                                 |
-| Build Tool | Maven                                         |
 | 기타       | Git, GitHub, IntelliJ, Apache POI, Postman    |
 
 ---
