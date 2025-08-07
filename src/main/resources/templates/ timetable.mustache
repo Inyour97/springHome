@@ -1,0 +1,86 @@
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>시간표</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #888;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        td {
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+<h1>주간 시간표</h1>
+<table>
+    <thead>
+    <tr>
+        <th>교시</th>
+        <th>월요일</th>
+        <th>화요일</th>
+        <th>수요일</th>
+        <th>목요일</th>
+        <th>금요일</th>
+    </tr>
+    </thead>
+    <tbody id="timetable-body">
+    <!-- JavaScript가 교시 행을 여기에 삽입 -->
+    </tbody>
+</table>
+
+<script>
+    const tbody = document.getElementById('timetable-body');
+    const days = ["MON", "TUE", "WED", "THR", "FRI"];
+    const periods = 9;
+
+    // 시간표 틀 만들기
+    for (let i = 1; i <= periods; i++) {
+        const row = document.createElement('tr');
+        const th = document.createElement('th');
+        th.textContent = `${i}교시`;
+        row.appendChild(th);
+
+        for (let j = 0; j < days.length; j++) {
+            const td = document.createElement('td');
+            td.setAttribute('data-day', days[j]);
+            td.setAttribute('data-period', i);
+            row.appendChild(td);
+        }
+
+        tbody.appendChild(row);
+    }
+
+    // SubjectsDAO.getTimeTable() 호출 - Ajax or fetch
+    fetch('/timetable')  // 예시: TimeTableServlet에서 JSON 응답
+        .then(response => response.json())
+        .then(data => {
+            // data: { "MON_1": "국어", "TUE_2": "수학", ... }
+
+            for (const key in data) {
+                const value = data[key]; // 과목
+                const [day, period] = key.split('_'); // 예: "MON", "1"
+
+                const selector = `td[data-day="${day}"][data-period="${parseInt(period)}"]`;
+                const cell = document.querySelector(selector);
+                if (cell) {
+                    cell.textContent = value;
+                }
+            }
+        })
+        .catch(error => {
+            console.error("시간표 로드 실패", error);
+        });
+</script>
+
+</body>
+</html>
